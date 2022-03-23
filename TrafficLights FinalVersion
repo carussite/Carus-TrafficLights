@@ -1,0 +1,80 @@
+import tkinter
+from tkinter import*
+from random import*
+import time
+import datetime
+
+canvas = tkinter.Canvas(height=800, width=600, bg='white')
+canvas.pack()
+
+
+#just a colour solution deciding 
+r=choice(('red2', 'darkorange1', 'green2'))
+a=choice(('red2'))
+b=choice(('darkorange1'))
+c=choice(('green2'))
+
+#base
+canvas.create_rectangle(10,10,310,710, fill='grey8', outline='black')
+
+global traffic_lights
+
+#turn everything on to dim
+#def turnEverythingOn():
+    #canvas.create_oval(60,60,250,250, fill='orangered4', outline='black') #red on
+    #canvas.create_oval(60,270,250,460, fill='chocolate3', outline='black') #yellow on
+    #canvas.create_oval(60,480,250,670, fill='dark olive green', outline='black') #green on
+
+
+def turnRedOff():
+    canvas.create_oval(60,60,250,250, fill='black', outline='red2') #red off
+    canvas.update()
+
+def turnYellowOff():
+    canvas.create_oval(60,270,250,460, fill='black', outline='darkorange1') #yellow off
+    canvas.update()
+    
+def turnGreenOff():
+    canvas.create_oval(60,480,250,670, fill='black', outline='green2') #green off
+    canvas.update()
+
+#turn on red, others off
+def turnRedOn():
+    canvas.create_oval(60,60,250,250, fill='red2', outline='black') #red on
+    turnYellowOff()
+    turnGreenOff()
+    canvas.update()
+
+#turn on yellow, others off
+def turnYellowOn():
+    canvas.create_oval(60,270,250,460, fill='darkorange1', outline='black') #yellow on
+    turnRedOff()
+    turnGreenOff()
+    canvas.update()
+
+    
+#turn on green, others off
+def turnGreenOn():
+    canvas.create_oval(60,480,250,670, fill='green2', outline='black') #green on
+    turnRedOff()
+    turnYellowOff()
+    canvas.update()
+
+
+#lights with conditions
+def traffic_lights():
+    turnRedOn()
+    time.sleep(2)
+    turnRedOff()
+    time.sleep(2)
+    turnYellowOn()
+    time.sleep(2)
+    turnYellowOff()
+    time.sleep(2)
+    turnGreenOn()
+    time.sleep(2)
+    turnGreenOff()
+    time.sleep(2)
+
+    canvas.after(14,traffic_lights)
+traffic_lights()
